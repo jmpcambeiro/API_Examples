@@ -20,7 +20,7 @@ import java.security.NoSuchAlgorithmException;
 public class Main {
 
 
-    private static final String APPLICATION_KEY = "8cb927df-94fa-3bf6-ba1c-d5645821b773";
+    private static final String APPLICATION_KEY = "99071a92-4101-33b5-b727-a082ff826ff4";
     private static final String SCHEME = "https";
 
 
@@ -108,6 +108,9 @@ public class Main {
      * @param httpClient The HTTP Client that will be used to execute the request
      * @throws IOException
      * @throws URISyntaxException
+     *
+     * Each device has the following properties associated used to determine the device's position : DEVICE_X_POS,
+     * DEVICE_Y_POS, DEVICE_Z_POS
      */
 
     private static void getAllByDeviceType(String deviceType, CloseableHttpClient httpClient) throws IOException,
@@ -149,11 +152,12 @@ public class Main {
             getAllByDeviceType(DEVICE_TYPE_LIGHT, client);
             getSensorData(LIGHT_BRIGHTNESS_SENSOR, DEVICE_TYPE_LIGHT, LIGHT_EXAMPLE_ID, 100, 1494588808754L,
                     client);
+            client.close();
         } catch (KeyStoreException | KeyManagementException | NoSuchAlgorithmException e1) {
             System.out.println("Error creating HTTP Client");
             e1.printStackTrace();
         } catch (IOException | URISyntaxException e) {
-            System.out.println("Error creating Retrieving Data");
+            System.out.println("Error Retrieving Data");
             e.printStackTrace();
         }
     }
